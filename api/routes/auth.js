@@ -65,19 +65,24 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-
         const user = await User.findOne({username: req.body.username})
 
-        const isAuth = await bcrypt.compare(req.body.password, user.password)
-
-        if(isAuth){
-            res.json({isAuth: true})
+        if(user){
+            const isAuth = await bcrypt.compare(req.body.password, user.password)
+    
+            if(isAuth){
+                res.json({isAuth: true})
+            }else{
+                res.json({isAuth: false, error: "err-pass"})
+            }
+            
         }else{
-            res.json({isAuth: false})
+            res.json({isAuth: false, error: "err-name"})
         }
-        
+
+
     } catch (error) {
-        res.json({error: error.message})
+        res.json({isAuth: false, error: "err", message: error.message})
     }
 })
 
