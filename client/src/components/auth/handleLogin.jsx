@@ -8,20 +8,10 @@ export const sendLoginRequest = (username, password) => {
 
     return new Promise(async (resolve, reject) => {
         const data = await sendPostRequest(`${import.meta.env.VITE_DB_API_BASE_URL}/auth/login`, body)
-        if(data){
+        if(data.isAuth === true){
             resolve(data)
         }else{
-            reject('error')
+            reject(data.error)
         }
     })
-}
-
-
-export const handleLoginState = (data) => {
-    if(data.isAuth){
-        console.log('logged in')
-
-    }else{
-        console.log(data.error)
-    }
 }

@@ -1,18 +1,18 @@
-GET http://localhost:3333/
+GET http://localhost:3000/
 
 ###
 
 # ! /AUTH ROUTE
-GET http://localhost:3333/auth
+GET http://localhost:3000/auth
 
 ###
 
-POST http://localhost:3333/auth/register
+POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "username": "nureddin",
-    "password": "admin",
+    "username": "root",
+    "password": "root",
     "avatar": "https://picsum.photos/500/500"
 }
 
@@ -22,6 +22,6 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "admin"
+    "username": "root",
+    "password": "root"
 }

@@ -7,5 +7,5 @@ Cinexplore is an app which you can add movies & TV shows to your profile. You ca
 ## Tech Stack
 
 I've used:
-- Node.js to create REST Api.
-- MongoDb to store user data. 
+- **Node.js** to create REST API for communicating with database.
+- **MongoDb** to store user data. 

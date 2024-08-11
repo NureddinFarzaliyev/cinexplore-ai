@@ -1,14 +1,26 @@
 import React from 'react'
 import { useState } from 'react'
 import { sendLoginRequest } from './handleLogin'
-import { handleLoginState } from './handleLogin'
+// import { handleLoginState } from './handleLogin'
+
 
 function Login() {
 
   const [login, setLogin] = useState({
     username: '',
-    password: ''
+    password: '',
+    status: ''
   })
+
+  const onLoginSuccess = (data) => {
+    localStorage.setItem('id', data.id)
+    localStorage.setItem('token', data.token)
+    location.reload()
+  }
+  
+  const onLoginFail = (data) => {
+    setLogin({...login, status: data})
+  }
 
 
   return (
@@ -22,8 +34,11 @@ function Login() {
       }}/>
 
       <button onClick={() => {
-        sendLoginRequest(login.username, login.password).then(data => handleLoginState(data))
-      }}>Login</button>
+        sendLoginRequest(login.username, login.password).then(onLoginSuccess, onLoginFail)
+      }}>{`login`}</button>
+
+      <p>{login.status != 'loading' ? login.status : '' }</p>
+
 
     </div>
   )
