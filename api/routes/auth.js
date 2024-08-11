@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema)
 
+// ! CHECK USER AUTH
 
 router.post('/', async (req, res) => {
 
@@ -46,16 +47,11 @@ router.post('/', async (req, res) => {
             res.json({isAuth: false})
         }
 
-        // res.json({user: user, id: req.body.id, token: req.body.token})
     }catch(err){
         res.json({error: err})
 
     }
 
-
-
-
-    // res.send('auth')
 })
 
 // ! REGISTER USER

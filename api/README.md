@@ -7,4 +7,5 @@ Cinexplore uses this api to handle database requests.
 | / | GET | - |
 | /auth/register | POST | username, password, avatar |
 | /auth/login | POST | username, password |
-|  |  |  |
+| /auth | POST | id, token |
+| /auth/usercheck/ | POST | username |
