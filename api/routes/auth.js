@@ -66,7 +66,7 @@ router.post('/register', async (req, res) => {
 
         if(existingUser){
             res.status(409)
-            res.json({error: "User already exists."})
+            res.json({error: "err-same"})
         }else{
             const hash = await bcrypt.hash(req.body.password, 10)
     
@@ -82,10 +82,11 @@ router.post('/register', async (req, res) => {
             await user.save()
     
             res.status(201)
-            res.json({message: `User ${req.body.username} saved on database.`})
+            res.json({success: true, message: `User ${req.body.username} saved on database.`})
+            console.log(user)
         }
     }catch(error){
-        res.json({error: error.message})
+        res.json({success: false, error: error.message})
     }
 })
 
@@ -115,7 +116,22 @@ router.post('/login', async (req, res) => {
     }
 })
 
+// ! CHECK IF USERNAME EXISTS
 
+router.post('/usercheck', async (req, res) => {
+    try{
+        const user = await User.findOne({username: req.body.username})
+
+        if(user){
+            res.json({isExists: true})
+        }else{
+            res.json({isExists: false})
+        }
+    }
+    catch(err){
+        res.json({error: err})
+    }
+})
 
 
 module.exports = router

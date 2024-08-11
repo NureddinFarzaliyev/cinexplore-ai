@@ -29,3 +29,30 @@ export const handleAuth = (id, token) => {
     })
 
 }
+
+export const getStatusText = (status) => {
+
+    switch (status) {
+        case 'err-pass':
+            return "Password is incorrect."
+        case 'err-same':
+            return 'This user already exists.'
+        case 'err-name':
+            return 'There is no user with this username.'
+        case 'err-filetype':
+            return 'File Type is not supported.'
+        case 'err':
+            return 'Error Occured.'
+        case 'loading':
+            return ''
+        case 'reg-success':
+            return 'Registered Successfully. Please Login.'
+        case 'empty':
+            return ''
+        case '':
+            return ''
+        default:
+            return `Unexpected Error: ${status}`
+    }
+
+}

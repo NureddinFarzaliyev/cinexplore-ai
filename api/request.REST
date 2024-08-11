@@ -25,3 +25,12 @@ Content-Type: application/json
     "username": "root",
     "password": "root"
 }
+
+###
+
+POST http://localhost:3000/auth/usercheck
+Content-Type: application/json
+
+{
+    "username": "manana"
+}
