@@ -7,9 +7,9 @@ import Nav from './components/nav/Nav'
 import Profile from './components/app/profile/Profile'
 import Ai from './components/app/ai/Ai'
 import Explore from './components/app/explore/Explore'
+import ItemPage from './components/app/ItemPage'
 
 function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(null)
 
   useEffect(() => {
@@ -23,9 +23,10 @@ function App() {
         {isLoggedIn === true && <Nav />}
         <Routes>
           <Route exact path='/' element={ isLoggedIn === true ? <AppMain/> : <Home /> } />
-          <Route exact path='/profile' element={ isLoggedIn === true ? <Profile/> : <Home /> } />
-          <Route exact path='/explore' element={ isLoggedIn === true ? <Explore/> : <Home /> } />
-          <Route exact path='/ai' element={ isLoggedIn === true ? <Ai/> : <Home /> } />
+          <Route path='/profile' element={ isLoggedIn === true ? <Profile/> : <Home /> } />
+          <Route path='/explore' element={<Explore/> } />
+          <Route path='/ai' element={<Ai/>} />
+          <Route path='/explore/:type/:id' element={<ItemPage />} />
         </Routes>
       </BrowserRouter>
     )

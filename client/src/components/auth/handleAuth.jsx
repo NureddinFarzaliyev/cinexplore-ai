@@ -17,7 +17,6 @@ export const sendLoginRequest = ({username, password}) => {
 }
 
 export const sendRegisterRequest = ({username, password, avatar}) => {
-
     const body = {
         username: username,
         password: password,
@@ -30,10 +29,7 @@ export const sendRegisterRequest = ({username, password, avatar}) => {
         if(data.success === true) resolve(data)
         else reject(data.error)
     })
-
-
 }
-
 
 export const uploadImage = async (image) => {
     const formdata = new FormData();

@@ -1,3 +1,9 @@
+
+
+// ! ================== API REQUESTS ==================
+
+// Database Requests 
+
 export const sendPostRequest = async (url, body) => {
     const response = await fetch(url, {
         method: "POST",
@@ -30,6 +36,26 @@ export const handleAuth = (id, token) => {
 
 }
 
+// TMDB Requests
+
+export const getItemsTMDB = (url) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            const response = await fetch(url, {method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS}`
+            }})
+
+            resolve(response.json())
+        }catch(err){
+            reject(err)
+        }
+    }) 
+}
+
+// ! ================== GENERAL FUNCTIONS ==================
+
 export const getStatusText = (status) => {
 
     switch (status) {
@@ -60,3 +86,4 @@ export const getStatusText = (status) => {
 export const protectedRoute = (isLoggedIn, Route, Home) => {
     return  isLoggedIn ? <Route /> : <Home />
 }
+
