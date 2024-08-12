@@ -8,11 +8,13 @@ import Profile from './components/app/profile/Profile'
 import Ai from './components/app/ai/Ai'
 import Explore from './components/app/explore/Explore'
 import ItemPage from './components/app/ItemPage'
+import {LoginContext} from './components/contexts/loginContext'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
 
   useEffect(() => {
+    console.log('AUTH CHECKED')
     handleAuth(localStorage.getItem('id'), localStorage.getItem('token')).then(data => setIsLoggedIn(data))
   }, [])
 
@@ -20,7 +22,9 @@ function App() {
 
     return(
       <BrowserRouter>
-        {isLoggedIn === true && <Nav />}
+      <LoginContext.Provider value={isLoggedIn}>
+        
+        <Nav />
         <Routes>
           <Route exact path='/' element={ isLoggedIn === true ? <AppMain/> : <Home /> } />
           <Route path='/profile' element={ isLoggedIn === true ? <Profile/> : <Home /> } />
@@ -28,6 +32,8 @@ function App() {
           <Route path='/ai' element={<Ai/>} />
           <Route path='/explore/:type/:id' element={<ItemPage />} />
         </Routes>
+
+      </LoginContext.Provider>
       </BrowserRouter>
     )
 
