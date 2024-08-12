@@ -56,3 +56,7 @@ export const getStatusText = (status) => {
     }
 
 }
+
+export const protectedRoute = (isLoggedIn, Route, Home) => {
+    return  isLoggedIn ? <Route /> : <Home />
+}
