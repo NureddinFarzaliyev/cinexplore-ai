@@ -36,6 +36,19 @@ export const handleAuth = (id, token) => {
 
 }
 
+export const fetchUserData = (id, type) => {
+
+    return new Promise(async (resolve, reject) => {
+
+        const data = await fetch(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${id}${type ? `/${type}` : ''}`)
+
+        resolve(data.json())
+
+    })
+
+
+}
+
 // TMDB Requests
 
 export const getItemsTMDB = (url) => {

@@ -2,37 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const bcrypt = require('bcryptjs')
-const mongoose = require('mongoose')
 const crypto = require('crypto')
 
-const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    avatar: {
-        type: String,
-        required: true
-    },
-    movies: {
-        type: Array,
-        required: true
-    },
-    tv: {
-        type: Array,
-        required: true
-    },
-    token: {
-        type: String,
-        required: true
-    }
-})
-
-const User = mongoose.model('User', userSchema)
+const User = require('../schemas/userSchema')
 
 // ! CHECK USER AUTH
 

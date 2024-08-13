@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { getItemsTMDB } from '../../Utils'
 import ItemCard from '../ItemCard'
+import ItemSlider from './ItemSlider'
 
 function ItemList({listName, listHeader, listType}) {
     const [data, setData] = useState(null)
 
     const onSuccess = (data) => {
         setData(data.results)
-        // console.log(data.results)
     }
 
     const onFail = (error) => {
@@ -23,11 +23,7 @@ function ItemList({listName, listHeader, listType}) {
   return (
     <div className='border-8 m-5'>
       <h1 className='text-3xl'>{listHeader}</h1>
-
-      
-      <div className='flex flex-wrap gap-2'>
-        {data?.map(e => <ItemCard data={e} key={e.id} type={listType} /> )}
-      </div>
+      <ItemSlider data={data} type={listType} />
     </div>
   )
 }

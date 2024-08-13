@@ -23,7 +23,7 @@ Content-Type: application/json
 
 {
     "username": "root",
-    "password": "root"
+    "password": "sjfskjd"
 }
 
 ###
@@ -32,5 +32,26 @@ POST http://localhost:3000/auth/usercheck
 Content-Type: application/json
 
 {
-    "username": "manana"
+    "username": "anaosdjasdj"
+}
+
+
+####
+
+GET http://localhost:3000/user/66bae6590f4580e1f2d88f22/
+
+
+####
+
+GET http://localhost:3000/user/66bae6590f4580e1f2d88f22/movies
+
+
+####
+
+POST http://localhost:3000/user/66bae6590f4580e1f2d88f22/additem
+Content-Type: application/json
+
+{
+    "type": "tv",
+    "itemid": "60625"
 }
