@@ -17,7 +17,7 @@ function Register() {
   }
 
   const onFail = (error) => {
-    // console.error(error)
+    console.error(error)
     setRegister({...register, status: error})
   }
 

@@ -117,3 +117,7 @@ export const ITEM_TYPES = {
 export const protectedRoute = (isLoggedIn, Route, Home) => {
     return  isLoggedIn ? <Route /> : <Home />
 }
+
+export const logError = (err) => {
+    console.error(err)
+}

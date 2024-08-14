@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getItemsTMDB } from '../Utils';
+import { logError } from '../Utils';
 
 function ItemPage() {
 
@@ -12,13 +13,9 @@ function ItemPage() {
     console.log(data)
   }
 
-  const onFail = (error) => {
-    console.log(error)
-  }
-
   useEffect(() => {
     let ignore = false;
-    if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}`).then(onSuccess, onFail)
+    if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}`).then(onSuccess, logError)
     return () => {ignore = true}
   }, [])
 

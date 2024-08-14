@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchUserData } from '../../Utils'
 import ItemSlider from '../explore/ItemSlider'
 import { ITEM_TYPES } from '../../Utils'
+import { logError } from '../../Utils'
 
 function Profile() {
 
@@ -12,13 +13,9 @@ function Profile() {
     // console.log(data)
   }
 
-  const onFail = (error) => {
-    console.error(error)
-  }
-
   useEffect(() => {
     let ignore = false
-    if(!ignore) fetchUserData(localStorage.getItem('id')).then(onSuccess, onFail)
+    if(!ignore) fetchUserData(localStorage.getItem('id')).then(onSuccess, logError)
     return () => {ignore = true}
   }, [])
   

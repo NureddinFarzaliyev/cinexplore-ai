@@ -33,7 +33,8 @@ router.post('/:id/additem', async (req, res) => {
         if(user){
             let updatedList
 
-            if(!user[type].includes(itemid)){
+            // if user dont have item on its profile, add to profile. Else, remove from.
+            if(!user[type].includes(itemid)){ 
                 updatedList = user[type].length == 0 ? [String(itemid)] : [...user[type], String(itemid)]
             }else{
                 updatedList = user[type].filter((e) => e != String(itemid))                

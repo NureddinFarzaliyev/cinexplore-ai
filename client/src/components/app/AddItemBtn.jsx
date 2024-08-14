@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { sendPostRequest } from '../Utils'
+import { logError } from '../Utils'
 
 function AddItemBtn({id, isIncludes, isDisabled, type}) {
 
@@ -44,12 +45,8 @@ function AddItemBtn({id, isIncludes, isDisabled, type}) {
         }else{
             setBtnStatus(BTN_STATUS.REMOVE)
         }
-        console.log(data)
+        // console.log(data)
     }  
-
-    const onFail = (err) => {
-        console.error(err)
-    }
 
     const toggleItem  = () => {
         setBtnStatus(BTN_STATUS.LOADING)
@@ -59,7 +56,7 @@ function AddItemBtn({id, isIncludes, isDisabled, type}) {
             itemid: id
         }
 
-        sendPostRequest(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${localStorage.getItem('id')}/additem`, body).then(onSuccess, onFail)
+        sendPostRequest(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${localStorage.getItem('id')}/additem`, body).then(onSuccess, logError)
     }
 
 

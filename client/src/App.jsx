@@ -9,6 +9,7 @@ import Ai from './components/app/ai/Ai'
 import Explore from './components/app/explore/Explore'
 import ItemPage from './components/app/ItemPage'
 import {LoginContext} from './components/contexts/loginContext'
+import ListPage from './components/app/explore/ListPage'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
@@ -28,9 +29,10 @@ function App() {
         <Routes>
           <Route exact path='/' element={ isLoggedIn === true ? <AppMain/> : <Home /> } />
           <Route path='/profile' element={ isLoggedIn === true ? <Profile/> : <Home /> } />
-          <Route path='/explore' element={<Explore/> } />
           <Route path='/ai' element={<Ai/>} />
+          <Route path='/explore' element={<Explore/> } />
           <Route path='/explore/:type/:id' element={<ItemPage />} />
+          <Route path='/explore/page/:type/:listName' element={<ListPage />} />
         </Routes>
 
       </LoginContext.Provider>
