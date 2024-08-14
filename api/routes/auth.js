@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
                 username: req.body.username,
                 password: hash,
                 avatar: req.body.avatar,
-                movies: [],
+                movie: [],
                 tv: [],
                 token: ' '
             })

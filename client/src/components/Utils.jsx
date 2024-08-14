@@ -40,8 +40,6 @@ export const fetchUserData = (id, type) => {
 
     return new Promise(async (resolve, reject) => {
 
-        // console.log('fetch user data started')
-
         try{
 
             let data
@@ -111,7 +109,6 @@ export const getStatusText = (status) => {
 
 export const ITEM_TYPES = {
     MOVIE_API: 'movie',
-    MOVIE_DB: 'movies',
     TV: 'tv',
     ALL: 'all'
 }

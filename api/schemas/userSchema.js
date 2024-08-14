@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    movies: {
+    movie: {
         type: Array,
         required: true
     },

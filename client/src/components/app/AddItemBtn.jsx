@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { sendPostRequest } from '../Utils'
-import { ITEM_TYPES } from '../Utils'
 
 
 
@@ -30,6 +29,16 @@ function AddItemBtn({id, isIncludes, isDisabled, type}) {
         setBtnInner(inner)
     }, [btnStatus, isIncludes])
 
+    const onSuccess = (data) => {
+        setBtnStatus(BTN_STATUS.DONE)
+        console.log(data)
+    }  
+
+    const onFail = (err) => {
+        setBtnStatus(BTN_STATUS.DONE)
+        console.log(err)
+    }
+
     const addToProfile  = () => {
         setBtnStatus(BTN_STATUS.LOADING)
         console.log(type)
@@ -39,9 +48,7 @@ function AddItemBtn({id, isIncludes, isDisabled, type}) {
             itemid: id
         }
 
-        sendPostRequest(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${localStorage.getItem('id')}/additem`, body).then(
-            setBtnStatus(BTN_STATUS.DONE)
-        )
+        sendPostRequest(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${localStorage.getItem('id')}/additem`, body).then(onSuccess, onFail)
 
         console.log('added')
     }

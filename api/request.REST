@@ -38,12 +38,12 @@ Content-Type: application/json
 
 ####
 
-GET http://localhost:3000/user/66bae6590f4580e1f2d88f22/
+GET http://localhost:3000/user/66bc7cf035514fd45f5a17f6/tv
 
 
 ####
 
-GET http://localhost:3000/user/66bae6590f4580e1f2d88f22/all
+GET http://localhost:3000/user/66bc7cf035514fd45f5a17f6/all
 
 
 ####

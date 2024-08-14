@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { getItemsTMDB } from '../../Utils'
-import ItemCard from '../ItemCard'
 import ItemSlider from './ItemSlider'
 
 function ItemList({listName, listHeader, listType}) {

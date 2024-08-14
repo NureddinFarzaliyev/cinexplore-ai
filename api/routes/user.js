@@ -14,7 +14,7 @@ router.get('/:id/:type?', async (req, res) => {
             res.json(user)
         }else{
             if(type === 'all'){
-                res.json([...user['movies'], ...user['tv']])
+                res.json([...user['movie'], ...user['tv']])
             }else{
                 res.json(user[type])
             }
@@ -35,7 +35,7 @@ router.post('/:id/additem', async (req, res) => {
                 
                 const updatedList = user[type].length == 0 ? [String(itemid)] : [...user[type], String(itemid)]
     
-                if(type === 'movies' || type === 'movie') await User.updateOne({_id: req.params.id}, {$set: { 'movies': updatedList } })
+                if(type === 'movies' || type === 'movie') await User.updateOne({_id: req.params.id}, {$set: { 'movie': updatedList } })
                 if(type === 'tv') await User.updateOne({_id: req.params.id}, {$set: { 'tv': updatedList } })
     
                 res.json(user)

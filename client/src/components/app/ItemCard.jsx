@@ -6,7 +6,7 @@ import { ITEM_TYPES } from '../Utils'
 
 function ItemCard({data, type, isIdArr}) {
     const [arrData, setArrData] = useState({})
-    const [userItems, setUserItems] = useState([])
+    const [userItems, setUserItems] = useState(null)
 
     const onSuccess = (data) => {
         setArrData(data)
@@ -28,9 +28,7 @@ function ItemCard({data, type, isIdArr}) {
     }, [data])
 
 
-
     const {title, name , id, vote_average, poster_path, backdrop_path} = isIdArr === true ? arrData : data
-
 
     return (
         <div>
@@ -40,8 +38,8 @@ function ItemCard({data, type, isIdArr}) {
                 <img src={`https://image.tmdb.org/t/p/w200/${poster_path}`} alt="poster" height={100} />
             </div>
         </Link>
-        
-        <AddItemBtn id={id} type={type} isIncludes={userItems.includes(String(id))} isDisabled={userItems.length == 0} />
+
+        <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} />
         </div>
     )
 }
