@@ -3,24 +3,31 @@ import { Link } from 'react-router-dom'
 import { fetchUserData, getItemsTMDB } from '../Utils'
 import AddItemBtn from './AddItemBtn'
 import { logError } from '../Utils'
+import { useContext } from 'react'
+import { LoginContext } from '../contexts/loginContext'
 
 function ItemCard({data, type, isIdArr}) {
     const [arrData, setArrData] = useState({})
     const [userItems, setUserItems] = useState(null)
+
+    const isLoggedIn = useContext(LoginContext)
 
     const onSuccess = (data) => {
         setArrData(data)
     }
 
     useEffect(() => {
-        let ignore = false
-        if(isIdArr === true){
-            if(!ignore){
-                getItemsTMDB(`https://api.themoviedb.org/3/${type}/${data}`).then(onSuccess, logError)  
-            } 
+        if(isLoggedIn === true){
+            let ignore = false
+            // isIdArr === comes from profile page, (data is an array with bunch of ids in it)
+            if(isIdArr === true){
+                if(!ignore){
+                    getItemsTMDB(`https://api.themoviedb.org/3/${type}/${data}`).then(onSuccess, logError)  
+                } 
+            }
+            if(!ignore) fetchUserData(localStorage.getItem('id'), type).then(data => setUserItems(data))
+            return () => {ignore = true}
         }
-        if(!ignore) fetchUserData(localStorage.getItem('id'), type).then(data => setUserItems(data))
-        return () => {ignore = true}
     }, [data])
 
 
@@ -35,7 +42,8 @@ function ItemCard({data, type, isIdArr}) {
             </div>
         </Link>
 
-        <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} />
+        {isLoggedIn === false ? <h1>Log in to add</h1> : null}
+        {isLoggedIn === true ? <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} /> : null}
         </div>
     )
 }

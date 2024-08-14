@@ -3,6 +3,9 @@ import ItemList from './ItemList'
 import { ITEM_TYPES } from '../../Utils'
 
 function Explore() {
+
+  // TODO: SEARCH FUNCTIONALITY : switch for movie/tv search
+
   return (
     <div>
       <h1>EXPLORE</h1>
@@ -23,3 +26,6 @@ function Explore() {
 }
 
 export default Explore
+
+
+

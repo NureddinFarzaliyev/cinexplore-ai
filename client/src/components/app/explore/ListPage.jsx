@@ -30,7 +30,7 @@ function ListPage() {
     <div>
         <button onClick={() => {setPage(p => p - 1 == 0 ? 1 : p - 1)}}> (-) </button>
         <p>{page}/{total_pages}</p> 
-        <button onClick={() => {setPage(p => p + 1 == total_pages ? total_pages : p + 1)}}> (+) </button>
+        <button onClick={() => {setPage(p => p + 1 == total_pages + 1 ? p : p + 1)}}> (+) </button>
 
         <p>Total Results: {total_results}</p>
 

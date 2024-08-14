@@ -121,3 +121,18 @@ export const protectedRoute = (isLoggedIn, Route, Home) => {
 export const logError = (err) => {
     console.error(err)
 }
+
+export const checkIncludes = async (id, type) => {
+
+    return new Promise(async (resolve, reject) => {
+
+        try{
+            const data = await fetchUserData(localStorage.getItem('id'), type)
+            const isIncludes = await data?.includes(String(id))
+            resolve(isIncludes)
+        }catch(err){
+            reject(err)
+        }
+    })
+
+}
