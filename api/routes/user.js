@@ -31,19 +31,18 @@ router.post('/:id/additem', async (req, res) => {
         const user = await User.findOne({_id: req.params.id})
 
         if(user){
-            if(!user[type].includes(itemid)){
-                
-                const updatedList = user[type].length == 0 ? [String(itemid)] : [...user[type], String(itemid)]
-    
-                if(type === 'movies' || type === 'movie') await User.updateOne({_id: req.params.id}, {$set: { 'movie': updatedList } })
-                if(type === 'tv') await User.updateOne({_id: req.params.id}, {$set: { 'tv': updatedList } })
-    
-                res.json(user)
+            let updatedList
 
+            if(!user[type].includes(itemid)){
+                updatedList = user[type].length == 0 ? [String(itemid)] : [...user[type], String(itemid)]
             }else{
-                throw new Error('Item Already Exists in User Profile')
+                updatedList = user[type].filter((e) => e != String(itemid))                
             }
 
+            if(type === 'movies' || type === 'movie') await User.updateOne({_id: req.params.id}, {$set: { 'movie': updatedList } })
+            if(type === 'tv') await User.updateOne({_id: req.params.id}, {$set: { 'tv': updatedList } })
+
+            res.json(user)
         }else{
             throw new Error('Wrong user id')
         }

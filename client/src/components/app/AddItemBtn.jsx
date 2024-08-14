@@ -1,47 +1,58 @@
 import React, { useEffect, useState } from 'react'
 import { sendPostRequest } from '../Utils'
 
-
-
-
 function AddItemBtn({id, isIncludes, isDisabled, type}) {
+
     const BTN_STATUS = {
-        INIT: 'init',
+        ADD: 'add',
+        REMOVE: 'remove',
         LOADING: 'loading',
-        DONE: 'done'
     }
 
-    const [btnStatus, setBtnStatus] = useState(BTN_STATUS.INIT)
+    const [btnStatus, setBtnStatus] = useState(BTN_STATUS.LOADING)
+    const [disableOnLoading, setDisableOnLoading] = useState(false)
     const [btnInner, setBtnInner] = useState()
 
     useEffect(() => {
-        let inner 
+        setBtnStatus(isIncludes ? BTN_STATUS.REMOVE : BTN_STATUS.ADD)
+    }, [isIncludes])
 
-        if(btnStatus == BTN_STATUS.LOADING){
+    const setBtnInnerText = (status) => {
+        let inner
+
+        if(status == BTN_STATUS.LOADING){
+            setDisableOnLoading(true)
             inner = 'Loading...'
-        }
-        else if(isIncludes === true){
+        }if(status === BTN_STATUS.REMOVE){
+            setDisableOnLoading(false)
             inner = 'Remove'
-        }else{
+        }if(status === BTN_STATUS.ADD){
+            setDisableOnLoading(false)
             inner = 'Add'
         }
 
         setBtnInner(inner)
-    }, [btnStatus, isIncludes])
+    }
+    
+    useEffect(() => {
+        setBtnInnerText(btnStatus)
+    }, [btnStatus])
 
     const onSuccess = (data) => {
-        setBtnStatus(BTN_STATUS.DONE)
+        if(btnStatus === BTN_STATUS.REMOVE){
+            setBtnStatus(BTN_STATUS.ADD)
+        }else{
+            setBtnStatus(BTN_STATUS.REMOVE)
+        }
         console.log(data)
     }  
 
     const onFail = (err) => {
-        setBtnStatus(BTN_STATUS.DONE)
-        console.log(err)
+        console.error(err)
     }
 
-    const addToProfile  = () => {
+    const toggleItem  = () => {
         setBtnStatus(BTN_STATUS.LOADING)
-        console.log(type)
 
         const body = {
             type: type,
@@ -49,19 +60,12 @@ function AddItemBtn({id, isIncludes, isDisabled, type}) {
         }
 
         sendPostRequest(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${localStorage.getItem('id')}/additem`, body).then(onSuccess, onFail)
-
-        console.log('added')
-    }
-
-    const removeFromProfile = () => {
-        setBtnStatus(BTN_STATUS.LOADING)
-        console.log('remove')
     }
 
 
     return(
-        <button onClick={(e) => { isIncludes ? removeFromProfile(e) : addToProfile(e) }} 
-        disabled={isDisabled} className={`${isIncludes ? 'bg-red-900' : 'bg-green-900'} w-full hover:bg-gray-700`} >
+        <button onClick={toggleItem} 
+        disabled={isDisabled || disableOnLoading} className={`${btnStatus == BTN_STATUS.REMOVE ? 'bg-red-900' : 'bg-green-900'} w-full hover:bg-gray-700`} >
             {btnInner}
         </button>
     )
