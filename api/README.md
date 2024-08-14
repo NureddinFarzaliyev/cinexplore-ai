@@ -10,5 +10,5 @@ Cinexplore uses this api to handle database requests.
 | /auth | POST | id, token |
 | /auth/usercheck/ | POST | username |
 | /user/{id} | GET | id:string 
-| /user/{id}/{type} | GET | id:string, type:"movies"/"tv" |
+| /user/{id}/{type} | GET | id:string, type:"movies"/"tv"/"all" |
 | /user/{id}/additem | POST | id:string, type, itemid |

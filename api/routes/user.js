@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const {ObjectID} = require('mongodb');
-
 const User = require('../schemas/userSchema')
 
 
@@ -15,8 +13,13 @@ router.get('/:id/:type?', async (req, res) => {
         if(!type){
             res.json(user)
         }else{
-            res.json(user[type])
+            if(type === 'all'){
+                res.json([...user['movies'], ...user['tv']])
+            }else{
+                res.json(user[type])
+            }
         }
+
     }catch(err){
         res.json({error: err})
     }
@@ -30,9 +33,9 @@ router.post('/:id/additem', async (req, res) => {
         if(user){
             if(!user[type].includes(itemid)){
                 
-                const updatedList = user[type].length == 0 ? [itemid] : [...user[type], itemid]
+                const updatedList = user[type].length == 0 ? [String(itemid)] : [...user[type], String(itemid)]
     
-                if(type === 'movies') await User.updateOne({_id: req.params.id}, {$set: { 'movies': updatedList } })
+                if(type === 'movies' || type === 'movie') await User.updateOne({_id: req.params.id}, {$set: { 'movies': updatedList } })
                 if(type === 'tv') await User.updateOne({_id: req.params.id}, {$set: { 'tv': updatedList } })
     
                 res.json(user)

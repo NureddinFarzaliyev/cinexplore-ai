@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { fetchUserData } from '../../Utils'
 import ItemSlider from '../explore/ItemSlider'
+import { ITEM_TYPES } from '../../Utils'
 
 function Profile() {
 
@@ -8,7 +9,7 @@ function Profile() {
 
   const onSuccess = (data) => {
     setData(data)
-    console.log(data)
+    // console.log(data)
   }
 
   const onFail = (error) => {
@@ -34,10 +35,10 @@ function Profile() {
       </div>
 
       <h1>Movies</h1>
-      {movies?.length != 0 ? <ItemSlider type={"movie"} data={movies} isIdArr={true} /> : "You've never added any movie :("}
+      {movies?.length != 0 ? <ItemSlider type={ITEM_TYPES.MOVIE_API} data={movies} isIdArr={true} /> : "You've never added any movie :("}
 
       <h1>Series</h1>
-      {tv?.length != 0 ? <ItemSlider type={"tv"} data={tv} isIdArr={true}  /> : "You've no series in your profile :("}
+      {tv?.length != 0 ? <ItemSlider type={ITEM_TYPES.TV} data={tv} isIdArr={true}  /> : "You've no series in your profile :("}
     </div>
   )
 }

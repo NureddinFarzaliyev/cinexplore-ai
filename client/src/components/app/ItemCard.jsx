@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getItemsTMDB } from '../Utils'
+import { fetchUserData, getItemsTMDB } from '../Utils'
+import AddItemBtn from './AddItemBtn'
+import { ITEM_TYPES } from '../Utils'
 
 function ItemCard({data, type, isIdArr}) {
     const [arrData, setArrData] = useState({})
+    const [userItems, setUserItems] = useState([])
 
     const onSuccess = (data) => {
         setArrData(data)
@@ -14,14 +17,20 @@ function ItemCard({data, type, isIdArr}) {
     }
 
     useEffect(() => {
+        let ignore = false
         if(isIdArr === true){
-            let ignore = false
-            if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${data}`).then(onSuccess, onFail)
-            return () => {ignore = true}
+            if(!ignore){
+                getItemsTMDB(`https://api.themoviedb.org/3/${type}/${data}`).then(onSuccess, onFail)  
+            } 
         }
+        fetchUserData(localStorage.getItem('id'), type).then(data => setUserItems(data))
+        return () => {ignore = true}
     }, [data])
 
+
+
     const {title, name , id, vote_average, poster_path, backdrop_path} = isIdArr === true ? arrData : data
+
 
     return (
         <div>
@@ -32,9 +41,7 @@ function ItemCard({data, type, isIdArr}) {
             </div>
         </Link>
         
-        <button onClick={() => {console.log('hi')}}>
-            Add movie
-        </button>
+        <AddItemBtn id={id} type={type} isIncludes={userItems.includes(String(id))} isDisabled={userItems.length == 0} />
         </div>
     )
 }

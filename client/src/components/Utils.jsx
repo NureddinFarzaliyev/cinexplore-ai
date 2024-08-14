@@ -40,9 +40,22 @@ export const fetchUserData = (id, type) => {
 
     return new Promise(async (resolve, reject) => {
 
-        const data = await fetch(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${id}${type ? `/${type}` : ''}`)
+        // console.log('fetch user data started')
 
-        resolve(data.json())
+        try{
+
+            let data
+            if(type != undefined){
+                data = await fetch(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${id}/${type}`)
+            }else{
+                data = await fetch(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${id}`)
+            }
+            
+            resolve(data.json())
+        }catch(err){
+            reject({error: err})
+        }
+
 
     })
 
@@ -96,7 +109,14 @@ export const getStatusText = (status) => {
 
 }
 
+export const ITEM_TYPES = {
+    MOVIE_API: 'movie',
+    MOVIE_DB: 'movies',
+    TV: 'tv',
+    ALL: 'all'
+}
+
+
 export const protectedRoute = (isLoggedIn, Route, Home) => {
     return  isLoggedIn ? <Route /> : <Home />
 }
-

@@ -43,7 +43,7 @@ GET http://localhost:3000/user/66bae6590f4580e1f2d88f22/
 
 ####
 
-GET http://localhost:3000/user/66bae6590f4580e1f2d88f22/movies
+GET http://localhost:3000/user/66bae6590f4580e1f2d88f22/all
 
 
 ####
