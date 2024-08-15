@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ITEM_TYPES, logError } from '../../Utils'
 import { getItemsTMDB } from '../../Utils'
+import { Link } from 'react-router-dom'
 
 function Search() {
     const [value, setValue] = useState('')
@@ -25,13 +26,17 @@ function Search() {
             console.log(`${type}: ${query}`)
             getItemsTMDB(`https://api.themoviedb.org/3/search/${type}?query=${query}&include_adult=false&language=en-US&page=1`)
             .then(onSuccess, logError)
+        }else{
+            setData(null)
         }
     }, [query, type])
 
     // TODO: EXPORT TO DIFFERENT COMPONENTS IF YOU CAN
 
-    // TODO: FORMAT AND STYLE SEARCH RESULTS 
+    // TODO: FORMAT AND STYLE SEARCH RESULTS
 
+    // TODO: ADD ITEMS TO PROFILE FROM SEARCH
+    
     return (
     <div>
         
@@ -52,7 +57,12 @@ function Search() {
         <div> 
             {data?.map((e, i) => {
                 return(
-                    <p key={i}>{e.name ? e.name : e.title}</p>
+                    <Link key={i} to={`/explore/${type}/${e.id}`}>
+                    <div>
+                        <p>{e.name ? e.name : e.title}</p>
+                        {/* <AddItemBtn id={e.id} type={type} isIncludes={isIncludes} isDisabled={false} /> */}
+                    </div>
+                    </Link>
                 )
             })}
         </div>

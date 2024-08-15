@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { getItemsTMDB } from '../../Utils'
-import ItemCard from '../ItemCard'
+import ItemCard from '../items/ItemCard'
 import { logError } from '../../Utils'
 
 function ListPage() {

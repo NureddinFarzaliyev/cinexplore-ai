@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchUserData } from '../../Utils'
-import ItemSlider from '../explore/ItemSlider'
+import ItemSlider from '../items/ItemSlider'
 import { ITEM_TYPES } from '../../Utils'
 import { logError } from '../../Utils'
 

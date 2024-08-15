@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { getItemsTMDB } from '../../Utils'
-import ItemSlider from './ItemSlider'
+import ItemSlider from '../items/ItemSlider'
 import { Link } from 'react-router-dom'
-import { logError } from '../../Utils'
+import { fetchDataForItemList } from './itemListFunctions'
 
-function ItemList({listName, listHeader, listType}) {
+function ItemList({listName, listHeader, listType, isSimilar}) {
   const [data, setData] = useState(null)
-
-  const onSuccess = (data) => {
-    setData(data.results)
-  }
+  const [similarName, setSimilarName] = useState('')
 
   useEffect(() => {
-    getItemsTMDB(`https://api.themoviedb.org/3/${listType}/${listName}?language=en-US&page=1`).then(onSuccess, logError)
+    fetchDataForItemList(isSimilar, listType, listName, setSimilarName, setData);
   }, [])
     
   return (
     <div className='border-8 m-5'>
-      <h1 className='text-3xl'>{listHeader}</h1>
-      <Link to={`/explore/page/${listType}/${listName}`} className='bg-orange-900 p-1'>show more</Link>
+      <h1 className='text-3xl'>{listHeader ? listHeader : similarName}</h1>
+      {isSimilar === true ? null : <Link to={`/explore/page/${listType}/${listName}`} className='bg-orange-900 p-1'>show more</Link>}
       <ItemSlider data={data} type={listType} />
     </div>
   )

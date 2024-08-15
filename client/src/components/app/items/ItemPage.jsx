@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import { checkIncludes, getItemsTMDB, logError } from '../Utils';
-import AddItemBtn from './AddItemBtn'
-import { LoginContext } from '../contexts/loginContext';
+import { checkIncludes, getItemsTMDB, logError } from '../../Utils';
+import AddItemBtn from './AddItemBtn';
+import { LoginContext } from '../../contexts/loginContext';
 import { Link } from 'react-router-dom';
+import SimilarItems from './SimilarItems';
 
 function ItemPage() {
 
@@ -21,8 +22,10 @@ function ItemPage() {
   }
 
   useEffect(() => {
-    getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}`).then(onSuccess, logError)
-  }, [])
+    let ignore = false
+    if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}`).then(onSuccess, logError)
+    return () => {ignore = true}
+  }, [id])
 
   // TODO: This can go too if new component is created
   // TV 
@@ -34,8 +37,6 @@ function ItemPage() {
 
 
   return (
-
-    // TODO: SIMILAR ITEMS
 
     // TODO: ITEMS WITH MAP FUNCTION CAN BE EXPORTED TO DIFFERENT COMPONENT
 
@@ -75,7 +76,6 @@ function ItemPage() {
       </div>
 
       <div>
-        <p>Seasons</p>
         {seasons?.map((e, i) => { // TODO: EXPANDABLE SEASON CARDS FOR EPISODES
           return(
           <div key={i} className='border-2 m-10'>
@@ -90,6 +90,9 @@ function ItemPage() {
           )
         })}
       </div>
+
+      <SimilarItems id={data.id} type={type} />
+
 
       {/* <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="poster" /> */}
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { sendPostRequest } from '../Utils'
-import { logError } from '../Utils'
+import { sendPostRequest } from '../../Utils'
+import { logError } from '../../Utils'
 
 function AddItemBtn({id, isIncludes, isDisabled, type}) {
     const BTN_STATUS = {
@@ -60,7 +60,7 @@ function AddItemBtn({id, isIncludes, isDisabled, type}) {
 
     return(
         <button onClick={toggleItem} 
-        disabled={isDisabled || disableOnLoading} className={`${btnStatus == BTN_STATUS.REMOVE ? 'bg-red-900' : 'bg-green-900'} w-full hover:bg-gray-700`} >
+        disabled={isDisabled || disableOnLoading} className={`${btnStatus == BTN_STATUS.REMOVE ? 'bg-red-900' : 'bg-green-900'} hover:bg-gray-700`} >
             {btnInner}
         </button>
     )

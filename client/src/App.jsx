@@ -7,7 +7,7 @@ import Nav from './components/nav/Nav'
 import Profile from './components/app/profile/Profile'
 import Ai from './components/app/ai/Ai'
 import Explore from './components/app/explore/Explore'
-import ItemPage from './components/app/ItemPage'
+import ItemPage from './components/app/items/ItemPage'
 import {LoginContext} from './components/contexts/loginContext'
 import ListPage from './components/app/explore/ListPage'
 

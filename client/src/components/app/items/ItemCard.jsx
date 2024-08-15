@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { fetchUserData, getItemsTMDB } from '../Utils'
+import { fetchUserData, getItemsTMDB } from '../../Utils'
 import AddItemBtn from './AddItemBtn'
-import { logError } from '../Utils'
+import { logError } from '../../Utils'
 import { useContext } from 'react'
-import { LoginContext } from '../contexts/loginContext'
+import { LoginContext } from '../../contexts/loginContext'
 
 function ItemCard({data, type, isIdArr}) {
     const [arrData, setArrData] = useState({})
@@ -37,11 +37,11 @@ function ItemCard({data, type, isIdArr}) {
         <Link to={`/explore/${type}/${id}`}>
             <div className='border-2 w-32'>
                 {/* <h3>{title ? title : name}</h3> */}
-                <img src={`https://image.tmdb.org/t/p/w200/${poster_path && poster_path}`} alt="poster" height={100} />
+                <img src={`https://image.tmdb.org/t/p/w200/${poster_path && poster_path}`} alt={title ? title : name} height={100} />
             </div>
         </Link>
 
-        {isLoggedIn === false ? <h1>Log in to add</h1> : null}
+        {/* {isLoggedIn === false ? <h1>Log in to add</h1> : null} */}
         {isLoggedIn === true ? <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} /> : null}
         </div>
     )

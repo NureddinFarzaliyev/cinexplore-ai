@@ -100,7 +100,8 @@ export const getStatusText = (status) => {
 export const ITEM_TYPES = {
     MOVIE: 'movie',
     TV: 'tv',
-    ALL: 'all'
+    ALL: 'all',
+    SIMILAR: 'similar'
 }
 
 
@@ -123,3 +124,4 @@ export const checkIncludes = async (id, type) => {
         }
     })
 }
+  
