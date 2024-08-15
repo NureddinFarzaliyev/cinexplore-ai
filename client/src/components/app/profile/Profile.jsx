@@ -14,9 +14,7 @@ function Profile() {
   }
 
   useEffect(() => {
-    let ignore = false
-    if(!ignore) fetchUserData(localStorage.getItem('id')).then(onSuccess, logError)
-    return () => {ignore = true}
+    fetchUserData(localStorage.getItem('id')).then(onSuccess, logError)
   }, [])
   
   const {username, avatar, tv, movie} = data ? data : {}
@@ -32,7 +30,7 @@ function Profile() {
       </div>
 
       <h1>Movies</h1>
-      {movie?.length != 0 ? <ItemSlider type={ITEM_TYPES.MOVIE_API} data={movie} isIdArr={true} /> : "You've never added any movie :("}
+      {movie?.length != 0 ? <ItemSlider type={ITEM_TYPES.MOVIE} data={movie} isIdArr={true} /> : "You've never added any movie :("}
 
       <h1>Series</h1>
       {tv?.length != 0 ? <ItemSlider type={ITEM_TYPES.TV} data={tv} isIdArr={true}  /> : "You've no series in your profile :("}

@@ -21,12 +21,11 @@ function ItemPage() {
   }
 
   useEffect(() => {
-    let ignore = false;
-    if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}`).then(onSuccess, logError)
-    return () => {ignore = true}
+    getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}`).then(onSuccess, logError)
   }, [])
 
-  // TV
+  // TODO: This can go too if new component is created
+  // TV 
   const {episode_run_time, first_air_date, last_air_date, seasons, name} = data
   // MOVIES
   const {budget, production_countries, release_date, runtime, title} = data
@@ -35,6 +34,8 @@ function ItemPage() {
 
 
   return (
+
+    // TODO: SIMILAR ITEMS
 
     // TODO: ITEMS WITH MAP FUNCTION CAN BE EXPORTED TO DIFFERENT COMPONENT
 

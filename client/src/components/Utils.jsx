@@ -17,7 +17,6 @@ export const sendPostRequest = async (url, body) => {
 }
 
 export const handleAuth = (id, token) => {
-
     const body = {
         id: id,
         token: token
@@ -33,13 +32,10 @@ export const handleAuth = (id, token) => {
         }
 
     })
-
 }
 
 export const fetchUserData = (id, type) => {
-
     return new Promise(async (resolve, reject) => {
-
         try{
 
             let data
@@ -48,16 +44,11 @@ export const fetchUserData = (id, type) => {
             }else{
                 data = await fetch(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${id}`)
             }
-            
             resolve(data.json())
         }catch(err){
             reject({error: err})
         }
-
-
     })
-
-
 }
 
 // TMDB Requests
@@ -78,10 +69,10 @@ export const getItemsTMDB = (url) => {
     }) 
 }
 
+
 // ! ================== GENERAL FUNCTIONS ==================
 
 export const getStatusText = (status) => {
-
     switch (status) {
         case 'err-pass':
             return "Password is incorrect."
@@ -104,11 +95,10 @@ export const getStatusText = (status) => {
         default:
             return `Unexpected Error: ${status}`
     }
-
 }
 
 export const ITEM_TYPES = {
-    MOVIE_API: 'movie',
+    MOVIE: 'movie',
     TV: 'tv',
     ALL: 'all'
 }
@@ -123,9 +113,7 @@ export const logError = (err) => {
 }
 
 export const checkIncludes = async (id, type) => {
-
     return new Promise(async (resolve, reject) => {
-
         try{
             const data = await fetchUserData(localStorage.getItem('id'), type)
             const isIncludes = await data?.includes(String(id))
@@ -134,5 +122,4 @@ export const checkIncludes = async (id, type) => {
             reject(err)
         }
     })
-
 }

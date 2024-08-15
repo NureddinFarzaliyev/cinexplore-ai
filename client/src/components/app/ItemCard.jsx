@@ -19,11 +19,9 @@ function ItemCard({data, type, isIdArr}) {
     useEffect(() => {
         if(isLoggedIn === true){
             let ignore = false
-            // isIdArr === comes from profile page, (data is an array with bunch of ids in it)
+            // isIdArr = true means it comes from profile page,and data is an array with bunch of ids in it
             if(isIdArr === true){
-                if(!ignore){
-                    getItemsTMDB(`https://api.themoviedb.org/3/${type}/${data}`).then(onSuccess, logError)  
-                } 
+                if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${data}`).then(onSuccess, logError)   
             }
             if(!ignore) fetchUserData(localStorage.getItem('id'), type).then(data => setUserItems(data))
             return () => {ignore = true}
@@ -34,7 +32,8 @@ function ItemCard({data, type, isIdArr}) {
     const {title, name , id, vote_average, poster_path, backdrop_path} = isIdArr === true ? arrData : data
 
     return (
-        <div>
+        // TODO: CREATE SEPERATE COMPONENTS
+        <div> 
         <Link to={`/explore/${type}/${id}`}>
             <div className='border-2 w-32'>
                 {/* <h3>{title ? title : name}</h3> */}

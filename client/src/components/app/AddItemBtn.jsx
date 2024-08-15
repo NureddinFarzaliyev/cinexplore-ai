@@ -3,7 +3,6 @@ import { sendPostRequest } from '../Utils'
 import { logError } from '../Utils'
 
 function AddItemBtn({id, isIncludes, isDisabled, type}) {
-
     const BTN_STATUS = {
         ADD: 'add',
         REMOVE: 'remove',
@@ -59,14 +58,12 @@ function AddItemBtn({id, isIncludes, isDisabled, type}) {
         sendPostRequest(`${import.meta.env.VITE_DB_API_BASE_URL}/user/${localStorage.getItem('id')}/additem`, body).then(onSuccess, logError)
     }
 
-
     return(
         <button onClick={toggleItem} 
         disabled={isDisabled || disableOnLoading} className={`${btnStatus == BTN_STATUS.REMOVE ? 'bg-red-900' : 'bg-green-900'} w-full hover:bg-gray-700`} >
             {btnInner}
         </button>
     )
-
 }
 
 export default AddItemBtn

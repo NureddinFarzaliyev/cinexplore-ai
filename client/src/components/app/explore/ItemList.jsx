@@ -12,9 +12,7 @@ function ItemList({listName, listHeader, listType}) {
   }
 
   useEffect(() => {
-    let ignore = false;
-    if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${listType}/${listName}?language=en-US&page=1`).then(onSuccess, logError)
-    return () => {ignore = true}
+    getItemsTMDB(`https://api.themoviedb.org/3/${listType}/${listName}?language=en-US&page=1`).then(onSuccess, logError)
   }, [])
     
   return (
