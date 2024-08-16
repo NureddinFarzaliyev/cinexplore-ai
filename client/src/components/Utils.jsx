@@ -104,6 +104,11 @@ export const ITEM_TYPES = {
     SIMILAR: 'similar'
 }
 
+export const AI_DISPATCH_ACTION = {
+    ADD: 'add',
+    REMOVE: 'remove'
+}
+
 
 export const protectedRoute = (isLoggedIn, Route, Home) => {
     return  isLoggedIn ? <Route /> : <Home />

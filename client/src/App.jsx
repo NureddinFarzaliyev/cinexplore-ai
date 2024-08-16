@@ -15,7 +15,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
 
   useEffect(() => {
-    console.log('AUTH CHECKED')
     handleAuth(localStorage.getItem('id'), localStorage.getItem('token')).then(data => setIsLoggedIn(data))
   }, [])
 

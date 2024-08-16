@@ -3,7 +3,7 @@ import { ITEM_TYPES, logError } from '../../Utils'
 import { getItemsTMDB } from '../../Utils'
 import { Link } from 'react-router-dom'
 
-function Search() {
+function Search( {ResultComponent} ) {
     const [value, setValue] = useState('')
     const [query, setQuery] = useState('')
     const [type, setType] = useState(ITEM_TYPES.MOVIE)
@@ -23,7 +23,6 @@ function Search() {
 
     useEffect(() => {
         if(query != ''){
-            console.log(`${type}: ${query}`)
             getItemsTMDB(`https://api.themoviedb.org/3/search/${type}?query=${query}&include_adult=false&language=en-US&page=1`)
             .then(onSuccess, logError)
         }else{
@@ -35,7 +34,6 @@ function Search() {
 
     // TODO: FORMAT AND STYLE SEARCH RESULTS
 
-    // TODO: ADD ITEMS TO PROFILE FROM SEARCH
     
     return (
     <div>
@@ -54,19 +52,9 @@ function Search() {
             <label htmlFor="tv">TV Shows</label>
         </form>
 
-        <div> 
-            {data?.map((e, i) => {
-                return(
-                    <Link key={i} to={`/explore/${type}/${e.id}`}>
-                    <div>
-                        <p>{e.name ? e.name : e.title}</p>
-                        {/* <AddItemBtn id={e.id} type={type} isIncludes={isIncludes} isDisabled={false} /> */}
-                    </div>
-                    </Link>
-                )
-            })}
+        <div>
+            {data?.map((e, i) => <ResultComponent data={e} key={i} type={type} />)}
         </div>
-
     </div>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ItemList from './ItemList'
 import { ITEM_TYPES } from '../../Utils'
 import Search from './Search'
+import SearchResultComponent from './SearchResultComponent'
 
 function Explore() {
 
@@ -13,7 +14,7 @@ function Explore() {
     <div>
       <h1>EXPLORE</h1>
 
-      <Search />
+      <Search ResultComponent={SearchResultComponent}  />
       
       <h1>MOVIES</h1>
       <ItemList listType={ITEM_TYPES.MOVIE} listHeader={"Top Rated Movies"} listName={"top_rated"} />
