@@ -37,7 +37,7 @@ function ItemCard({data, type, isIdArr}) {
         <Link to={`/explore/${type}/${id}`}>
             <div className='border-2 w-32'>
                 {/* <h3>{title ? title : name}</h3> */}
-                <img src={`https://image.tmdb.org/t/p/w200/${poster_path && poster_path}`} alt={title ? title : name} height={100} />
+                <img src={`https://image.tmdb.org/t/p/w200/${poster_path != undefined && poster_path != null && poster_path}`} alt={title ? title : name} height={100} />
             </div>
         </Link>
 

@@ -6,8 +6,10 @@ function SimilarItems({id, type}) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}/similar`)
+        let ignore = false
+        if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}/similar`)
         .then(data => setData(data.results), logError)
+        return () => {ignore = true}
     }, [id])
 
     
