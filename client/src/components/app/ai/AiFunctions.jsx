@@ -1,3 +1,6 @@
+
+// ! =========== AI ===========
+
 import Groq from "groq-sdk";
 
 const groq = new Groq({apiKey: import.meta.env.VITE_AI_KEY, dangerouslyAllowBrowser: true});
@@ -8,7 +11,7 @@ export const sendAiRequest = (itemsArr) => {
   If user has provided only movies, respond with only movies.
   If user has provided only tv shows, respond with only tv shows.
   I want your response to be like this:
-  ["recommendation1name", "recommendation2name", "recommendation3name"]
+  [{"type": "movie", "name": "recommendation1name"}, {"type": "tv", "name": "recommendation2name"}, {"type": "movie", "name": "recommendation3name"}]
   Please do not do any comments. Return just an array and nothing else.`
 
   return new Promise( async (resolve, reject) => {
@@ -37,4 +40,20 @@ export const sendAiRequest = (itemsArr) => {
 
   })
     
+}
+
+
+// ! =========== Work with data ===========
+
+import { getItemsTMDB } from "../../Utils";
+
+export const handleAiData = async (array) => {
+  const processedArr = await Promise.all(
+      array.map(async (element) => {
+          const data = await getItemsTMDB(`https://api.themoviedb.org/3/search/${element.type}?query=${element.name}&include_adult=false&language=en-US&page=1`);
+          return { type: element.type, data: data.results[0] };
+      })
+  );
+
+  return processedArr;
 }

@@ -20,7 +20,6 @@ function ItemCard({data, type, isIdArr, isAi}) {
     useEffect(() => {
         if(isLoggedIn === true){
             let ignore = false
-            // isIdArr = true means it comes from profile page,and data is an array with bunch of ids in it
             if(isIdArr === true){
                 if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${data}`).then(onSuccess, logError)   
             }
