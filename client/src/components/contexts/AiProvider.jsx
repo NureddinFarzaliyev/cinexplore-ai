@@ -9,7 +9,11 @@ function AiProvider({children}) {
     const itemsReducer = (state, action) => {
         switch (action.type) {
             case AI_DISPATCH_ACTION.ADD:
-                return [...state, {type: action.payload.type, data: action.payload.data}]
+                if(state.length >= 25){
+                    return state
+                }else{
+                    return [...state, {type: action.payload.type, data: action.payload.data}]
+                }
             case AI_DISPATCH_ACTION.REMOVE:
                 return state.filter((e) => {
                     return !(e.data.id === action.payload.id && e.type === action.payload.type)
