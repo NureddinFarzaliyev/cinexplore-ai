@@ -54,7 +54,7 @@ function ItemPage() {
         </Link>
       )}
       
-      {/* <img src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`} alt="backdrop" /> */}
+      <img src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`} alt="backdrop" />
 
       <h1>{title ? title : name}</h1>
 
@@ -94,7 +94,7 @@ function ItemPage() {
       <SimilarItems id={data.id} type={type} />
 
 
-      {/* <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="poster" /> */}
+      <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="poster" />
 
       
     </div>
