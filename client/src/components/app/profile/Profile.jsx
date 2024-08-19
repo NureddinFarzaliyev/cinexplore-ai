@@ -29,6 +29,12 @@ function Profile() {
         <img src={avatar} alt="avatar" className='h-64' />
       </div>
 
+      <button className='border-2 p-4 bg-red-900 hover:bg-red-400' onClick={() => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('id')
+        location.reload()
+      }}>Log out</button>
+
       <h1>Movies</h1>
       {movie?.length != 0 ? <ItemSlider type={ITEM_TYPES.MOVIE} data={movie} isIdArr={true} /> : "You've never added any movie :("}
 

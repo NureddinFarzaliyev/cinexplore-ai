@@ -10,6 +10,7 @@ import Explore from './components/app/explore/Explore'
 import ItemPage from './components/app/items/ItemPage'
 import {LoginContext} from './components/contexts/loginContext'
 import ListPage from './components/app/explore/ListPage'
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
@@ -25,6 +26,7 @@ function App() {
       <LoginContext.Provider value={isLoggedIn}>
         
         <Nav />
+
         <Routes>
           <Route exact path='/' element={ isLoggedIn === true ? <AppMain/> : <Home /> } />
           <Route path='/profile' element={ isLoggedIn === true ? <Profile/> : <Home /> } />
@@ -40,7 +42,13 @@ function App() {
 
   }else{
 
-    return('loading...')
+    return(
+      <div className='flex items-center justify-center h-dvh'>
+        <h1 className='text-5xl'>
+          <AiOutlineLoading3Quarters className='animate-spin' />
+        </h1>
+      </div>
+    )
     
   }
 

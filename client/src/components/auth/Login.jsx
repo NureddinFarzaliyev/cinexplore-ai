@@ -30,19 +30,29 @@ function Login() {
 
 
   return (
-    <div>      
-      LOGIN
-      <form>
-        <input type="text" name='username' placeholder='Username' onChange={(e) => {
-          setLogin({...login, username: e.target.value})
-        }} /> 
+    <div className=''>      
+      <form className='flex flex-col gap-7'>
 
-        <input type="text" name='password' placeholder='Password' onChange={(e) => {
-          setLogin({...login, password: e.target.value})
-        }}/>
+        <label className='flex flex-col'>
+          Username:
+          <input className='w-80 rounded-md p-1 px-2' type="text" name='username' onChange={(e) => {
+            setLogin({...login, username: e.target.value})
+          }} /> 
+        </label>
 
-        <button disabled={ login.username == '' || login.password == '' || login.status == 'loading' ? true : false } 
-        onClick={(e) => {loginHandler(e)}}>{login.status == 'loading' ? 'Loading...' : 'Login'}</button>
+        <label className='flex flex-col'>
+          Password:
+          <input className='w-80 rounded-md p-1 px-2' type="text" name='password' onChange={(e) => {
+            setLogin({...login, password: e.target.value})
+          }}/>
+        </label>
+
+
+
+        <button className='w-80 rounded-md py-2 cursor-pointer transition-colors shadow-xl hover:bg-accentHover bg-accent' disabled={ login.username == '' || login.password == '' || login.status == 'loading' ? true : false } 
+          onClick={(e) => {loginHandler(e)}}>{login.status == 'loading' ? 'Loading...' : 'Login'}</button>
+
+
       </form>
 
       <p>{getStatusText(login.status)}</p>

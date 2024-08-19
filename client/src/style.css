@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    background-color: #18171E;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+input{
+    color: black;
+}

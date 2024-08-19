@@ -109,6 +109,7 @@ export const AI_DISPATCH_ACTION = {
     REMOVE: 'remove'
 }
 
+export const ROUTE_NAMES = ['/', 'explore',  'ai']
 
 export const protectedRoute = (isLoggedIn, Route, Home) => {
     return  isLoggedIn ? <Route /> : <Home />

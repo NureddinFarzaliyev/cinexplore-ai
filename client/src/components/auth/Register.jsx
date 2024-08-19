@@ -54,21 +54,27 @@ function Register() {
   return (
 
     <div>
-      REGISTER
-      <form>
-        <input type="text" name='username' placeholder='Username' onChange={(e) => {
-          setRegister({...register, username: e.target.value})
-        }} />
+      <form className='flex flex-col gap-7'>
+        <label className='flex flex-col'>
+          Username:
+          <input className='w-80 rounded-md p-1 px-2' type="text" name='username' onChange={(e) => {
+            setRegister({...register, username: e.target.value})
+          }} />
+        </label>
 
-        <input type="text" name='password' placeholder='Password' onChange={(e) => {
-          setRegister({...register, password: e.target.value})
-        }} />
+        <label className='flex flex-col'>
+          Password:
+          <input className='w-80 rounded-md p-1 px-2' type="password" name='password' onChange={(e) => {
+            setRegister({...register, password: e.target.value})
+          }} />
+        </label>
 
         <input type="file" accept="image/gif, image/jpeg, image/png" name='avatar' onChange={(e) => {
           setAvatarImg(e.target.files[0])
         }} />
 
-        <button disabled={ register.username == '' || register.password == '' || register.status == 'loading' ? true : false } 
+        <button className='w-80 rounded-md py-2 cursor-pointer transition-colors shadow-xl hover:bg-accentHover bg-accent'
+        disabled={ register.username == '' || register.password == '' || register.status == 'loading' ? true : false } 
         onClick={(e) => {registerHandler(e)}}>{register.status === 'loading' ? 'Loading...' : 'Register'}</button>
 
       </form>

@@ -1,17 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { LoginContext } from '../contexts/loginContext'
+import React, { useState } from 'react'
+import './nav.css'
+import { RxHamburgerMenu } from "react-icons/rx";
+import DesktopNav from './DesktopNav';
+import MobileNav from './MobileNav';
+import { Link } from 'react-router-dom';
 
 function Nav() {
-  const isLoggedIn = useContext(LoginContext)
+
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className='border-red-900 border-2 mb-5 flex gap-3 p-1 px-3'>
-      <Link to={'/'}>Home</Link>
-      {isLoggedIn && <Link to={'/profile'}>Profile</Link>}
-      <Link to={'/explore'}>Explore</Link>
-      <Link to={'/ai'}>AI Recommendation</Link>
+    <div className='h-20 flex justify-center md:justify-between items-center px-2 sm:px-7 fixed w-full z-50 bg-darkBg shadow-xl'>
+
+      <div onClick={() => {setIsOpen(p => !p)}} className='text-2xl sm:text-3xl absolute cursor-pointer block md:hidden left-5'>
+        <RxHamburgerMenu />
+      </div>
+
+      <Link to='/'>
+        <h1 className='font-display text-3xl sm:text-5xl md:w-min'>
+          CINEXPLORE
+        </h1>
+      </Link>
+
+      <DesktopNav/>
+      <MobileNav isOpen={isOpen} setIsOpen={setIsOpen} />
+      
     </div>
   )
 }

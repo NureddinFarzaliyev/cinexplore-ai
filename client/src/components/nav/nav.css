@@ -1,0 +1,57 @@
+@keyframes navComeIn {
+    0%{
+        display: hidden;
+        transform: translateX(-100%);
+    }100%{
+        display: flex;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes navGoOut {
+    100%{
+        display: hidden;
+        transform: translateX(-100%);
+    }0%{
+        display: flex;
+        transform: translateX(0%);
+    }
+}
+
+.navIn {
+    animation: navComeIn forwards .3s;
+}
+
+.navOut {
+    animation: navGoOut forwards .3s;
+}
+
+.navActiveMobile{
+    background-color: #05862D;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.navActive{
+    position: relative;
+}
+
+.navActive::after{
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 110%;
+    margin-left: -5%;
+    left: 0px;
+    bottom: -15px;
+    background-color: #05862D;
+    border-radius: 1.5px;
+    animation: navActive .2s forwards;
+}
+
+@keyframes navActive {
+    0%{
+        width: 0px;
+    }
+}
