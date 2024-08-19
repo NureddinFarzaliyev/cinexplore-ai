@@ -5,7 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 function TextDisclosure({title, text}) {
     return (
         <div className="sm:min-h-48 mt-5 sm:mt-0">
-            <Disclosure> 
+            <Disclosure defaultOpen={true}> 
 
                 <DisclosureButton className="w-full p-3 bg-accent hover:bg-accentHover transition-colors rounded-lg">
                     <div className='flex justify-between items-center'> 
