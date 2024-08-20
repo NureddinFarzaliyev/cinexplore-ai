@@ -34,8 +34,10 @@ function AiRecommendation() {
     return (
         <div>
             <RecommendationButton clickHandler={clickHandler} btnState={btnState} /> <br />
-            { processedData.length !== 0 && <i>Caution: Leaving this page or clicking any of the items will cause your recommendations to be lost. This issue will be fixed.</i>}
-            {<ItemSlider data={processedData && processedData} type={ITEM_TYPES.ALL} isIdArr={false} isAi={false} />}
+            { processedData.length !== 0 && <i className='opacity-50'>Caution: Leaving this page or clicking any of the items will cause your recommendations to be lost. This issue will be fixed.</i>}
+            <div className='mt-1'>
+                {<ItemSlider data={processedData && processedData} type={ITEM_TYPES.ALL} isIdArr={false} isAi={false} />}
+            </div>
         </div>
     )
 }

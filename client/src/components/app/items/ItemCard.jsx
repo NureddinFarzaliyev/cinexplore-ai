@@ -33,7 +33,7 @@ function ItemCard({data, type, isIdArr, isAi}) {
 
     return (
         // TODO: CREATE SEPERATE COMPONENTS
-        <div> 
+        <div className='relative'> 
         <Link to={`/explore/${type}/${id}`}>
             <div className='w-32 rounded overflow-hidden shadow-lg'>
                 {/* <h3>{title ? title : name}</h3> */}
@@ -42,7 +42,7 @@ function ItemCard({data, type, isIdArr, isAi}) {
         </Link>
 
         {/* {isLoggedIn === false ? <h1>Log in to add</h1> : null} */}
-        {/* {isLoggedIn === true ? <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} /> : null} */}
+        {isLoggedIn === true ? <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} /> : null}
 
         {isAi === true ? <RemoveFromAIUserBtn type={type} id={id} /> : null}
         </div>

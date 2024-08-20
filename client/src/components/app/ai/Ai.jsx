@@ -8,10 +8,12 @@ function Ai() {
 
 
   return ( 
-    <AiProvider>
-      <ChooseItems />
-      <AiRecommendation />
-    </AiProvider>
+    <div className='mt-24 absolute px-2 sm:px-20 overflow-hidden w-dvw'>
+      <AiProvider>
+        <ChooseItems />
+        <AiRecommendation />
+      </AiProvider>
+    </div>
   )
 }
 

@@ -7,12 +7,13 @@ function AiSearchResult({ type, data}) {
     const dispatch = useContext(AiItemsDispatchContext)
 
     return (
-        <div>
-            {data.name ? data.name : data.title}
-            <button className='border-2' 
-            onClick={() => {dispatch({type: AI_DISPATCH_ACTION.ADD, payload: {type: type, data: data}})}}> 
-                add
-            </button>
+        <div className='flex items-center gap-3 p-1 rounded hover:bg-gray-400 transition-colors cursor-pointer' onClick={() => {dispatch({type: AI_DISPATCH_ACTION.ADD, payload: {type: type, data: data}})}}>
+            <img src={`${data.poster_path != null ? 
+                    (`https://image.tmdb.org/t/p/w200/${data.poster_path}`) : 
+                    (`https://placehold.co/124x186`)}`} 
+                    alt={data.title ? data.title : data.name} 
+                    className='rounded-lg shadow-xl w-12 object-cover' />
+            <p className='font-semibold'>{data.name ? data.name : data.title}</p>
         </div>
     )
 }

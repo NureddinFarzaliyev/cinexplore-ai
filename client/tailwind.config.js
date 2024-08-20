@@ -10,7 +10,7 @@ export default {
         bg: '#18171E',
         darkBg: '#0d0c11',
         accent: "#05862D",
-        accentHover: "#005C21"
+        accentHover: "#005C21",
       },
       fontFamily: {
         display: ["Squada One", "sans-serif"],

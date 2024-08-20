@@ -8,6 +8,7 @@ import './home.css'
 
 function Home() {
 
+  // TODO: FullPage.js 
  
   return (
     <>

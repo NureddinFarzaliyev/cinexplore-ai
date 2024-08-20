@@ -2,13 +2,10 @@ import React from 'react'
 import ItemCard from './ItemCard'
 import { ITEM_TYPES } from '../../Utils'
 
-
 function ItemSlider({data, type, isIdArr, isAi}) {
 
-  
-
   return (
-    <div className='flex flex-wrap gap-1'>
+    <div className='flex gap-2 overflow-x-scroll'>
         {data?.map((e, i) => <ItemCard 
         data={type === ITEM_TYPES.ALL ? e.data : e} 
         key={e.id ? e.id : i} 

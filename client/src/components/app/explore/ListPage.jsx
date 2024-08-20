@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { getItemsTMDB } from '../../Utils'
 import ItemCard from '../items/ItemCard'
 import { logError } from '../../Utils'
+import { FaAngleRight } from "react-icons/fa";
+import { FaAngleLeft } from "react-icons/fa";
 
 function ListPage() {
 
@@ -27,14 +29,18 @@ function ListPage() {
     const {total_results, total_pages} = data ? data : {}
 
     return (
-    <div>
-        <button onClick={() => {setPage(p => p - 1 == 0 ? 1 : p - 1)}}> (-) </button>
-        <p>{page}/{total_pages}</p> 
-        <button onClick={() => {setPage(p => p + 1 == total_pages + 1 ? p : p + 1)}}> (+) </button>
+    <div className="mt-24 absolute">
+        <div className='flex flex-col items-center my-5'>
+            <div className='bg-gray-200 w-52 flex items-center px-5 justify-between h-7 rounded-md text-black'>
+                <button onClick={() => {setPage(p => p - 1 == 0 ? 1 : p - 1)}}> <FaAngleLeft/> </button>
+                <div className='bg-accent h-full px-6 text-white font-bold'>{page}/{total_pages}</div> 
+                <button onClick={() => {setPage(p => p + 1 == total_pages + 1 ? p : p + 1)}}> <FaAngleRight/> </button>
+            </div>
+            <p className='text-center'>Total Results: {total_results}</p>
+        </div>
 
-        <p>Total Results: {total_results}</p>
 
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap gap-2 justify-center sm:px-10'>
             {result?.map((e, i) => <ItemCard data={e} key={e.id ? e.id : i} type={type} /> )}
         </div>
     </div>
