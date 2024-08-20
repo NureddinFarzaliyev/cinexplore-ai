@@ -12,9 +12,12 @@ function ItemList({listName, listHeader, listType, isSimilar}) {
   }, [])
     
   return (
-    <div className='border-8 m-5'>
-      <h1 className='text-3xl'>{listHeader ? listHeader : similarName}</h1>
-      {isSimilar === true ? null : <Link to={`/explore/page/${listType}/${listName}`} className='bg-orange-900 p-1'>show more</Link>}
+    <div className='mt-5'>
+      <div className='flex justify-between py-3'>
+        <h1 className='text-2xl font-semibold'>{listHeader ? listHeader : similarName}</h1>
+        {isSimilar === true ? null : <Link to={`/explore/page/${listType}/${listName}`} className='p-1 underline hover:text-accent'>Show More</Link>}
+      </div>
+
       <ItemSlider data={data} type={listType} />
     </div>
   )

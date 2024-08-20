@@ -35,14 +35,14 @@ function ItemCard({data, type, isIdArr, isAi}) {
         // TODO: CREATE SEPERATE COMPONENTS
         <div> 
         <Link to={`/explore/${type}/${id}`}>
-            <div className='border-2 w-32'>
+            <div className='w-32 rounded overflow-hidden shadow-lg'>
                 {/* <h3>{title ? title : name}</h3> */}
                 <img src={`${poster_path != null ? `https://image.tmdb.org/t/p/w200/${poster_path}` : `https://placehold.co/124x186`}`} alt={title ? title : name} height={100} />
             </div>
         </Link>
 
         {/* {isLoggedIn === false ? <h1>Log in to add</h1> : null} */}
-        {isLoggedIn === true ? <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} /> : null}
+        {/* {isLoggedIn === true ? <AddItemBtn id={id} type={type} isIncludes={userItems?.includes(String(id))} isDisabled={userItems === null} /> : null} */}
 
         {isAi === true ? <RemoveFromAIUserBtn type={type} id={id} /> : null}
         </div>

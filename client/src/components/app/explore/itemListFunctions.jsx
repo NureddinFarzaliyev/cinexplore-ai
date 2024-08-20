@@ -50,7 +50,7 @@ export const fetchDataForItemList = async (isSimilar, listType, listName, setSim
 
         if(data.similarUrl != undefined){
           getItemsTMDB(data.similarUrl)
-          .then(data => setSimilarName(`Because you've liked ${data.title ? data.title : data.name}`), logError)
+          .then(data => setSimilarName(`Because you've liked "${data.title ? data.title : data.name}"`), logError)
         }
       }
     }catch(err){

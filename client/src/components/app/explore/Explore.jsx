@@ -6,27 +6,20 @@ import SearchResultComponent from './SearchResultComponent'
 
 function Explore() {
 
-  // TODO: SEARCH FUNCTIONALITY : switch for movie/tv search
-
-  // TODO: CUSTOM RECCOMENDATION BASED ON USER PROFILE
-
   return (
-    <div>
-      <h1>EXPLORE</h1>
+    <div className='mt-24 absolute px-3 sm:px-20'>
 
-      <Search ResultComponent={SearchResultComponent}  />
+      <Search ResultComponent={SearchResultComponent} />
       
-      <h1>MOVIES</h1>
       <ItemList listType={ITEM_TYPES.MOVIE} listHeader={"Top Rated Movies"} listName={"top_rated"} />
-      <ItemList isSimilar={true} listType={ITEM_TYPES.MOVIE} />
-      <ItemList listType={ITEM_TYPES.MOVIE} listHeader={"On Theaters"} listName={"now_playing"} />
+      <ItemList listType={ITEM_TYPES.MOVIE} isSimilar={true}  />
+      {/* <ItemList listType={ITEM_TYPES.MOVIE} listHeader={"On Theaters"} listName={"now_playing"} /> */}
       {/* <ItemList listType={ITEM_TYPES.MOVIE} listHeader={"Trending Now"} listName={"popular"} /> */}
       {/* <ItemList listType={ITEM_TYPES.MOVIE} listHeader={"Upcoming"} listName={"upcoming"} /> */}
 
-      <h1>TV SHOWS</h1>
       <ItemList listType={ITEM_TYPES.TV} listHeader={"Top Rated TV Shows"} listName={"top_rated"} />
-      <ItemList isSimilar={true} listType={ITEM_TYPES.TV} />
-      <ItemList listType={ITEM_TYPES.TV} listHeader={"Trending TV Shows"} listName={"popular"} />
+      <ItemList listType={ITEM_TYPES.TV} isSimilar={true} />
+      {/* <ItemList listType={ITEM_TYPES.TV} listHeader={"Trending TV Shows"} listName={"popular"} /> */}
       {/* <ItemList listType={ITEM_TYPES.TV} listHeader={"On The Air"} listName={"on_the_air"} /> */}
 
     </div>

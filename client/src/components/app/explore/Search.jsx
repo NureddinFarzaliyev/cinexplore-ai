@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { ITEM_TYPES, logError } from '../../Utils'
 import { getItemsTMDB } from '../../Utils'
-import { Link } from 'react-router-dom'
+import SearchResults from './SearchResults'
+import { ImCross } from "react-icons/im";
 
 function Search( {ResultComponent} ) {
     const [value, setValue] = useState('')
@@ -29,32 +30,23 @@ function Search( {ResultComponent} ) {
             setData(null)
         }
     }, [query, type])
-
-    // TODO: EXPORT TO DIFFERENT COMPONENTS IF YOU CAN
-
-    // TODO: FORMAT AND STYLE SEARCH RESULTS
-
     
     return (
     <div>
-        
-        <input type="text" onChange={e => setValue(e.target.value)} />
 
-        <form> 
-            <input type="radio" name='movieortv' id="movie" 
-            checked={type === ITEM_TYPES.MOVIE} 
-            onChange={() => setType(ITEM_TYPES.MOVIE)} />
-            <label htmlFor="movie">Movies</label>
+        <div className='flex shadow-xl relative'>
 
-            <input type="radio" name='movieortv' id='tv' 
-            checked={type === ITEM_TYPES.TV} 
-            onChange={() => setType(ITEM_TYPES.TV)} />
-            <label htmlFor="tv">TV Shows</label>
-        </form>
+            <select className='bg-accent text-center shadow-xl font-semibold h-10 rounded-lg rounded-e-none sm:px-10' name='type' onChange={(e) => setType(e.target.value)} >
+                <option value={ITEM_TYPES.MOVIE}>Movies</option>
+                <option value={ITEM_TYPES.TV}>TV Shows</option>
+            </select>
 
-        <div>
-            {data?.map((e, i) => <ResultComponent data={e} key={i} type={type} />)}
+            <input type="text" placeholder='Search...' className='w-full h-10 rounded-lg rounded-s-none pl-5 opacity-75' value={value} onChange={e => setValue(e.target.value)} />
+
+            <button className='absolute right-4 top-0 bottom-0 text-black text-opacity-30 hover:text-opacity-40' onClick={() => {setValue('')}}><ImCross/></button>
         </div>
+
+        <SearchResults data={data} type={type} ResultComponent={ResultComponent} />
     </div>
     )
 }
