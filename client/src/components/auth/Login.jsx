@@ -35,14 +35,14 @@ function Login() {
 
         <label className='flex flex-col'>
           Username:
-          <input className='w-80 rounded-md p-1 px-2' type="text" name='username' onChange={(e) => {
-            setLogin({...login, username: e.target.value})
+          <input className='w-80 rounded-md p-1 px-2' type="text" name='username' value={login.username} onChange={(e) => {
+            setLogin({...login, username: e.target.value.replace(' ', '')})
           }} /> 
         </label>
 
         <label className='flex flex-col'>
           Password:
-          <input className='w-80 rounded-md p-1 px-2' type="text" name='password' onChange={(e) => {
+          <input className='w-80 rounded-md p-1 px-2' type="password" name='password' onChange={(e) => {
             setLogin({...login, password: e.target.value})
           }}/>
         </label>
@@ -52,10 +52,10 @@ function Login() {
         <button className='w-80 rounded-md py-2 cursor-pointer transition-colors shadow-xl hover:bg-accentHover bg-accent' disabled={ login.username == '' || login.password == '' || login.status == 'loading' ? true : false } 
           onClick={(e) => {loginHandler(e)}}>{login.status == 'loading' ? 'Loading...' : 'Login'}</button>
 
+        <p className='text-center'>{getStatusText(login.status)}</p>
 
       </form>
 
-      <p>{getStatusText(login.status)}</p>
 
     </div>
   )

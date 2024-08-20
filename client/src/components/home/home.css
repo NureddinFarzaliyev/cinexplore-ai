@@ -28,3 +28,27 @@
     background-position: bottom;
     background-repeat: no-repeat;
 }
+
+@keyframes switchToRight {
+    0%{
+        left: 0;
+    }100%{
+        left: 50%;
+    } 
+}
+
+@keyframes switchToLeft {
+    0%{
+        left: 50%;
+    }100%{
+        left: 0;
+    } 
+}
+
+.switchLeft{
+    animation: switchToLeft .2s forwards;
+}
+
+.switchRight{
+    animation: switchToRight .2s forwards;
+}

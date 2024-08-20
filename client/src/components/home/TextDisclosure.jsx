@@ -10,7 +10,7 @@ function TextDisclosure({title, text}) {
                 <DisclosureButton className="w-full p-3 bg-accent hover:bg-accentHover transition-colors rounded-lg">
                     <div className='flex justify-between items-center'> 
                         <span className='text-sm font-semibold'> {title} </span>
-                        <FaChevronDown className='group-data-[open]:rotate-180' />
+                        <FaChevronDown className={`group-data-[open]:rotate-180`} />
                     </div>
                 </DisclosureButton>
 
