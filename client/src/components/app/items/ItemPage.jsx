@@ -5,20 +5,25 @@ import AddItemBtn from './AddItemBtn';
 import { LoginContext } from '../../contexts/loginContext';
 import { Link } from 'react-router-dom';
 import SimilarItems from './SimilarItems';
+import { ITEM_TYPES } from '../../Utils';
+import ItemHeader from './ItemHeader';
+import ItemInfo from './ItemInfo';
 
 function ItemPage() {
 
+  
   const {id, type} = useParams();
   const [data, setData] = useState({})
   const [isIncludes, setIsIncludes] = useState(null)
-
+  
   const isLoggedIn = useContext(LoginContext)
-
+  
   const onSuccess = (data) => {
     setData(data)
     if(isLoggedIn === true){
       checkIncludes(id, type).then(data => setIsIncludes(data), logError)
     }
+    console.log(data)
   }
 
   useEffect(() => {
@@ -26,6 +31,7 @@ function ItemPage() {
     if(!ignore) getItemsTMDB(`https://api.themoviedb.org/3/${type}/${id}`).then(onSuccess, logError)
     return () => {ignore = true}
   }, [id])
+
 
   // TODO: This can go too if new component is created
   // TV 
@@ -40,12 +46,12 @@ function ItemPage() {
 
     // TODO: ITEMS WITH MAP FUNCTION CAN BE EXPORTED TO DIFFERENT COMPONENT
 
-    <div className='flex flex-col gap-5'>
+    <div className='pt-20 flex w-dvw h-dvh'>
 
       {isLoggedIn === true ? (
-        <div>
-        <AddItemBtn id={id} type={type} isDisabled={isIncludes === null} isIncludes={isIncludes === true} />
-      </div>
+        <div className='relative bg-red-900'>
+          <AddItemBtn id={id} type={type} isDisabled={isIncludes === null} isIncludes={isIncludes === true} />
+        </div>
       ) : (
         <Link to={"/"}>
           <div className='border-emerald-800 border-4 bg-emerald-700'>
@@ -53,48 +59,23 @@ function ItemPage() {
           </div>
         </Link>
       )}
+
       
-      <img src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`} alt="backdrop" />
+      <div className='absolute z-[-10]'>
+        <img className='w-dvw h-dvh object-cover' src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`} alt="backdrop" />
+        <div className='bg-black opacity-80 h-dvh w-dvw absolute top-0'></div>
+      </div>  
 
-      <h1>{title ? title : name}</h1>
-
-      <p>{vote_average}</p>
-      <p>{status}</p> 
-      <p>{release_date} </p> 
-      <p>{first_air_date && first_air_date.slice(0, 4)} {last_air_date && '-'} {last_air_date && last_air_date.slice(0, 4)}</p>
-
-      <p>{budget}</p>
-      <div>{production_countries?.map((e, i) => <span key={i}>{e.name}</span>)}</div>
-
-      <p>{episode_run_time}</p>
-      <p>{runtime}</p>
-
-      <p>{overview}</p>
       
-      <div>
-        {genres?.map((e, i) => <div key={i}> {e.name} </div>)}
+
+      <div className='rounded-lg overflow-hidden shadow-2xl w-fit h-fit ml-8 mt-8'>
+        <img src={`https://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" />
       </div>
 
-      <div>
-        {seasons?.map((e, i) => { // TODO: EXPANDABLE SEASON CARDS FOR EPISODES
-          return(
-          <div key={i} className='border-2 m-10'>
-            <h2>{e.name}</h2>
-            <p>{e.air_date}</p>
-            <p>{e.id}</p>
-            <p>{e.overview}</p>
-            <p>{e.vote_average}</p>
-            <img src={`https://image.tmdb.org/t/p/w300/${e.poster_path}`} alt="" />
-            <b>EXPANDABLE SEASON CARDS FOR EPISODES</b>
-          </div>
-          )
-        })}
+      <div className='mx-10 w-[60vw] mt-8 h-min flex flex-col items-between gap-4'>
+        <ItemHeader data={data} />
+        <ItemInfo data={data} type={type} />
       </div>
-
-      <SimilarItems id={data.id} type={type} />
-
-
-      <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="poster" />
 
       
     </div>

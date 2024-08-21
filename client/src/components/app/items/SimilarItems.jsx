@@ -14,8 +14,8 @@ function SimilarItems({id, type}) {
     }, [id])
     
     return (
-        <div>
-            <h1>Similar:</h1>
+        <div className='w-[60vw]'>
+            <h1 className='mb-2 text-lg font-semibold'>Similar:</h1>
             <ItemSlider data={data} type={type} isIdArr={false} />
         </div>
     )
