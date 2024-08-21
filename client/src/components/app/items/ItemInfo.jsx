@@ -15,13 +15,13 @@ function ItemInfo({data, type}) {
         <div>
 
             {type === ITEM_TYPES.TV ? (
-                <div className='flex gap-6 text-xl mb-7'> 
+                <div className='flex gap-6 text-xl mb-5 sm:mb-7'> 
                     <button className={`${tabState === 0 ? 'navActive' : ''}`} onClick={() => setTabState(0)}>About</button>
                     <button className={`${tabState === 1 ? 'navActive' : ''}`} onClick={() => setTabState(1)}>Seasons</button>
                 </div>
             ) : null }
 
-            {tabState === 0 ? (<ItemAbout data={data} type={type} />) : (<Seasons seasons={seasons} />)}
+            {tabState === 0 ? (<ItemAbout data={data} type={type} />) : (<Seasons seasons={seasons} id={data.id} />)}
             
         </div>
     )

@@ -28,7 +28,7 @@ function App() {
         <Nav />
 
         <Routes>
-          <Route exact path='/' element={ isLoggedIn === true ? <AppMain/> : <Home /> } />
+          <Route exact path='/' element={ isLoggedIn === true ? <Profile/> : <Home /> } />
           <Route path='/profile' element={ isLoggedIn === true ? <Profile/> : <Home /> } />
           <Route path='/ai' element={<Ai/>} />
           <Route path='/explore' element={<Explore/> } />

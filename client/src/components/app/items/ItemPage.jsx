@@ -23,7 +23,6 @@ function ItemPage() {
     if(isLoggedIn === true){
       checkIncludes(id, type).then(data => setIsIncludes(data), logError)
     }
-    console.log(data)
   }
 
   useEffect(() => {
@@ -43,13 +42,9 @@ function ItemPage() {
 
 
   return (
-
-    // TODO: ITEMS WITH MAP FUNCTION CAN BE EXPORTED TO DIFFERENT COMPONENT
-
-    <div className='pt-20 flex w-dvw h-dvh'>
-
+    <div className='mt-20 sm:flex w-dvw sm:h-dvh absolute overflow-x-hidden'>
       {isLoggedIn === true ? (
-        <div className='relative bg-red-900'>
+        <div className='0'>
           <AddItemBtn id={id} type={type} isDisabled={isIncludes === null} isIncludes={isIncludes === true} />
         </div>
       ) : (
@@ -59,25 +54,21 @@ function ItemPage() {
           </div>
         </Link>
       )}
-
       
-      <div className='absolute z-[-10]'>
+      <div className='fixed z-[-10] '>
         <img className='w-dvw h-dvh object-cover' src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`} alt="backdrop" />
         <div className='bg-black opacity-80 h-dvh w-dvw absolute top-0'></div>
       </div>  
 
-      
 
-      <div className='rounded-lg overflow-hidden shadow-2xl w-fit h-fit ml-8 mt-8'>
-        <img src={`https://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" />
+      <div className='flex sm:block item-center justify-center w-full'>
+        <img src={`https://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" className='w-44 sm:w-fit rounded-lg shadow-2xl mt-5 ml-5 sm:ml-7' />
       </div>
 
-      <div className='mx-10 w-[60vw] mt-8 h-min flex flex-col items-between gap-4'>
+      <div className='mx-3 sm:mx-10 sm:w-[60vw] mt-8 h-min flex flex-col items-between gap-4'>
         <ItemHeader data={data} />
         <ItemInfo data={data} type={type} />
       </div>
-
-      
     </div>
   )
 }

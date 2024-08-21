@@ -14,12 +14,9 @@ function ItemAbout({data, type}) {
     return (
         <div className='flex flex-col gap-10'>
             <div>
-                <p className='max-h-24 overflow-scroll'>{overview}</p>
-
+                <p className='sm:max-h-24 sm:overflow-scroll'>{overview}</p>
                 <div className='flex gap-3 mt-4'>
-
                     <div className='flex items-center gap-2'><img className='h-4' src={TMDBIcon} alt="score" /> {vote_average}</div>
-
                     {type === ITEM_TYPES.TV ? (
                         <>
                             <div className='flex items-center gap-2'><FaTv /> {status}</div>
@@ -30,12 +27,10 @@ function ItemAbout({data, type}) {
                             <div className='flex items-center gap-2'><IoLogoUsd /> {budget}</div>
                         </>
                     ) }
-
                 </div>
             </div>
 
             <SimilarItems id={data.id} type={type} />
-
         </div>
     )
 }
