@@ -130,4 +130,11 @@ export const checkIncludes = async (id, type) => {
         }
     })
 }
-  
+
+import PlaceholderLoading from 'react-placeholder-loading'
+
+export const placeholderFactory = (shape, w, h) => {
+    return(
+        <PlaceholderLoading shape={shape} width={w} height={h} colorStart='#18171E' colorEnd='rgba(255,255,255,.5)' />
+    )
+}

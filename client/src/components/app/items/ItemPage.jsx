@@ -3,15 +3,10 @@ import { useParams } from 'react-router-dom'
 import { checkIncludes, getItemsTMDB, logError } from '../../Utils';
 import AddItemBtn from './AddItemBtn';
 import { LoginContext } from '../../contexts/loginContext';
-import { Link } from 'react-router-dom';
-import SimilarItems from './SimilarItems';
-import { ITEM_TYPES } from '../../Utils';
 import ItemHeader from './ItemHeader';
 import ItemInfo from './ItemInfo';
 
 function ItemPage() {
-
-  
   const {id, type} = useParams();
   const [data, setData] = useState({})
   const [isIncludes, setIsIncludes] = useState(null)
@@ -31,29 +26,12 @@ function ItemPage() {
     return () => {ignore = true}
   }, [id])
 
-
-  // TODO: This can go too if new component is created
-  // TV 
-  const {episode_run_time, first_air_date, last_air_date, seasons, name} = data
-  // MOVIES
-  const {budget, production_countries, release_date, runtime, title} = data
-  // BOTH
-  const {backdrop_path, genres, overview, poster_path, status, vote_average,} = data
-
+  const {backdrop_path,  poster_path} = data
 
   return (
     <div className='mt-20 sm:flex w-dvw sm:h-dvh absolute overflow-x-hidden'>
-      {isLoggedIn === true ? (
-        <div className='0'>
-          <AddItemBtn id={id} type={type} isDisabled={isIncludes === null} isIncludes={isIncludes === true} />
-        </div>
-      ) : (
-        <Link to={"/"}>
-          <div className='border-emerald-800 border-4 bg-emerald-700'>
-          {`Login or Register to add this ${type} to your profile and use custom and AI-Powered reccomendations.`}
-          </div>
-        </Link>
-      )}
+
+        
       
       <div className='fixed z-[-10] '>
         <img className='w-dvw h-dvh object-cover' src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`} alt="backdrop" />
@@ -61,7 +39,7 @@ function ItemPage() {
       </div>  
 
 
-      <div className='flex sm:block item-center justify-center w-full'>
+      <div className='flex sm:block item-center justify-center w-full relative'>
         <img src={`https://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" className='w-44 sm:w-fit rounded-lg shadow-2xl mt-5 ml-5 sm:ml-7' />
       </div>
 
@@ -69,6 +47,12 @@ function ItemPage() {
         <ItemHeader data={data} />
         <ItemInfo data={data} type={type} />
       </div>
+
+      {isLoggedIn === true ? (
+          <div className='absolute top-72 sm:top-10 sm:right-10 md:right-20 w-10 h-10'>
+            <AddItemBtn id={id} type={type} isDisabled={isIncludes === null} isIncludes={isIncludes === true} />
+          </div>
+        ) : null}
     </div>
   )
 }

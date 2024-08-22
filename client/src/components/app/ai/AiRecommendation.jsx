@@ -32,7 +32,7 @@ function AiRecommendation() {
     }, [data])
 
     return (
-        <div>
+        <div className='flex flex-col items-center'>
             <RecommendationButton clickHandler={clickHandler} btnState={btnState} /> <br />
             { processedData.length !== 0 && <p className='opacity-50 italic mb-1 text-xs'>Caution: Leaving this page and going to any of the pages listed below will cause these recommendations to be lost. This issue will be fixed.</p>}
             <div className='mt-1'>
