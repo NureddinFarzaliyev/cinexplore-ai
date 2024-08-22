@@ -47,12 +47,12 @@ function Profile() {
 
         <div>
           <h1 className='text-xl font-semibold'>Movies</h1>
-          <div className='mt-3'>{movie?.length != 0 ? <ItemSlider type={ITEM_TYPES.MOVIE} data={movie} isIdArr={true} /> : "You've never added any movie :("}</div>
+          <div className='mt-3'>{movie?.length != 0 ? <ItemSlider type={ITEM_TYPES.MOVIE} data={movie} isIdArr={true} /> : "You've never added any movies."}</div>
         </div>
 
         <div>
           <h1 className='text-xl font-semibold'>Series</h1>
-          <div className='mt-3'>{tv?.length != 0 ? <ItemSlider type={ITEM_TYPES.TV} data={tv} isIdArr={true}  /> : "You've no series in your profile :("}</div>
+          <div className='mt-3'>{tv?.length != 0 ? <ItemSlider type={ITEM_TYPES.TV} data={tv} isIdArr={true}  /> : "You've no series in your profile."}</div>
         </div>
       </div>
     </div>

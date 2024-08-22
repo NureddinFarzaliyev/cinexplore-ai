@@ -10,6 +10,7 @@ import RemoveFromAIUserBtn from '../ai/RemoveFromAIUserBtn'
 function ItemCard({data, type, isIdArr, isAi}) {
     const [arrData, setArrData] = useState({})
     const [userItems, setUserItems] = useState(null)
+    const [placeholderText, setPlaceHolderText] = useState('Loading')
 
     const isLoggedIn = useContext(LoginContext)
 
@@ -31,11 +32,22 @@ function ItemCard({data, type, isIdArr, isAi}) {
 
     const {title, name , id, poster_path} = isIdArr === true ? arrData : data
 
+    useEffect(() => {
+        if(data.name !== undefined){
+            setPlaceHolderText(data.name)
+        }else if(data.title !== undefined){
+            setPlaceHolderText(data.title)
+        }else{
+            setPlaceHolderText('Loading...')
+        }
+    }, [title, name])
+    
+
     return (
         <div className='relative'> 
         <Link to={`/explore/${type}/${id}`}>
             <div className='w-32 rounded overflow-hidden shadow-lg'>
-                <img src={`${poster_path != null ? `https://image.tmdb.org/t/p/w200/${poster_path}` : `https://placehold.co/124x186`}`} alt={title ? title : name} height={100} />
+                <img src={`${poster_path != null ? `https://image.tmdb.org/t/p/w200/${poster_path}` : `https://images.placeholders.dev/?width=130&height=200&fontSize=10&text=${placeholderText}&bgColor=%23000000&textColor=%23ffffff`}`} height={100} />
             </div>
         </Link>
 
@@ -43,6 +55,8 @@ function ItemCard({data, type, isIdArr, isAi}) {
         {isAi === true ? <RemoveFromAIUserBtn type={type} id={id} /> : null}
         </div>
     )
+
+
 }
 
 export default ItemCard

@@ -26,7 +26,7 @@ function ItemPage() {
     return () => {ignore = true}
   }, [id])
 
-  const {backdrop_path,  poster_path} = data
+  const {backdrop_path,  poster_path, title, name} = data
 
   return (
     <div className='mt-20 sm:flex w-dvw sm:h-dvh absolute overflow-x-hidden'>
@@ -40,7 +40,7 @@ function ItemPage() {
 
 
       <div className='flex sm:block item-center justify-center w-full relative'>
-        <img src={`https://image.tmdb.org/t/p/w400/${poster_path}`} alt="poster" className='w-44 sm:w-fit rounded-lg shadow-2xl mt-5 ml-5 sm:ml-7' />
+        <img src={poster_path !== null ? `https://image.tmdb.org/t/p/w400/${poster_path}` : `https://images.placeholders.dev/?width=350&height=550&fontSize=10&text=${title ? title : name}&bgColor=%23000000&textColor=%23ffffff`} alt="poster" className='w-44 sm:w-fit rounded-lg shadow-2xl mt-5 ml-5 sm:ml-7' />
       </div>
 
       <div className='mx-3 sm:mx-10 sm:w-[60vw] mt-8 h-min flex flex-col items-between gap-4'>

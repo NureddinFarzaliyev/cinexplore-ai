@@ -8,7 +8,6 @@ import { FaAngleRight } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa";
 
 function ListPage() {
-
     const {listName, type} = useParams()
     const [page, setPage] = useState(1)
     const [data, setData] = useState(null)
@@ -38,7 +37,6 @@ function ListPage() {
             </div>
             <p className='text-center'>Total Results: {total_results}</p>
         </div>
-
 
         <div className='flex flex-wrap gap-2 justify-center sm:px-10'>
             {result?.map((e, i) => <ItemCard data={e} key={e.id ? e.id : i} type={type} /> )}
