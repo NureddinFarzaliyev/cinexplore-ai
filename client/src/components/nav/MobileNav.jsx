@@ -15,7 +15,7 @@ function MobileNav({isOpen, setIsOpen}) {
     }
 
     return (
-        <div className={`${ isOpen === true ? 'navIn' : 'navOut' } p-10 absolute top-0 left-0 bg-bg border-accent border-4 h-[100vh] w-[100vw] rounded-lg md:hidden`}>
+        <div className={`${ isOpen === true ? 'navIn' : 'navOut' } z-[9999] p-10 absolute top-0 left-0 bg-bg border-accent border-4 h-[100vh] w-[100vw] rounded-lg md:hidden`}>
             <div onClick={() => {setIsOpen(false)}} className='absolute right-10 cursor-pointer p-2 mt-[-0.5rem]' >
                 <ImCross />
             </div>

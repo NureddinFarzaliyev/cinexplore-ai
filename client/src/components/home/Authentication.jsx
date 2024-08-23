@@ -14,7 +14,7 @@ function Authentication() {
             <div className='overlayRightGradient absolute right-0 h-full w-[75%] hidden sm:block'></div>
             <div className='absolute left-0 h-full w-[100%] bg-[rgba(0,0,0,.7)] block sm:hidden'></div>
 
-            <div className='flex flex-col justify-center sm:justify-start items-center sm:items-baseline gap-10 sm:grid grid-rows-12 h-full z-50 absolute w-full'>
+            <div className='flex flex-col justify-center sm:justify-start items-center sm:items-baseline gap-10 sm:grid grid-rows-12 h-full z-30 absolute w-full'>
 
                 <div className='absolute top-20'>
                     <p className='text-2xl mt-10 sm:mt-0 font-bold text-center sm:text-left'>Create a New Account to Get Started</p>
