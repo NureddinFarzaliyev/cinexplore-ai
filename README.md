@@ -19,7 +19,7 @@ Cinexplore is an app which you can add movies & TV shows to your profile. You ca
 
 **I’ve used:**
 - MongoDB for database
-- Express & Node.js to create REST API to communicate with database.
+- Express & Node.js to create REST API to communicate with database. (You can find REST API and its documentation here: https://www.github.com/NureddinFarzaliyev/cinexplore-ai/tree/master/api)
 - Cloudinary to store profile pictures
 - TMDB API to get data about movies and TV shows
 - Groq & Llama as an Artificial Intelligence
