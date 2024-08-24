@@ -57,3 +57,9 @@ export const handleAiData = async (array) => {
 
   return processedArr;
 }
+
+export const addRecommendationsToLocal = (data) => {
+  if(data && data !== "[]"){
+    localStorage.setItem('prevrec', data)
+  }
+}

@@ -9,8 +9,6 @@ function Episodes({id, season}) {
         getItemsTMDB(`https://api.themoviedb.org/3/tv/${id}/season/${season}`).then(data => setEpisodes(data.episodes))
     }, [id, season])
 
-    console.log(episodes)
-
     return (
         <div>
             {episodes?.map((e, i) => {
